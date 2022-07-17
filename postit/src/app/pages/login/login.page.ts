@@ -22,6 +22,9 @@ export class LoginPage {
   public isLoading: boolean = false ;
 
   public async login(): Promise<void> {
+    if(!this.canLogin())
+    return;
+
     this.isLoading = true;
 
     //toast
