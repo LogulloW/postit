@@ -19,10 +19,9 @@
     border-radius: 28px 28px 0 0;
     height: 70vh;
     transform: translateY(-60px);
-    img {
+    app-logo {
         width: 30%;
         height: 30%;
-        margin-bottom: 1rem;
         @media screen and (min-width: 1000px) {
             width: 20%;
         }
