@@ -22,8 +22,10 @@
     img {
         width: 30%;
         height: 30%;
-        object-fit: contain;
         margin-bottom: 1rem;
+        @media screen and (min-width: 1000px) {
+            width: 20%;
+        }
     }
     span {
         color: gray;
@@ -43,7 +45,7 @@
         padding: 1.3rem;
         color: black;
     }
-    &--input {
+    &--inputs {
         display: flex;
         flex-direction: column;
         width: 90%;
@@ -66,4 +68,13 @@
             text-decoration: none;
         }
     }
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+app-half-circle-spinner {
+    margin-left: 1rem;
 }
