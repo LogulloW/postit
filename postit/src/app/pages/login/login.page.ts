@@ -28,7 +28,16 @@ export class LoginPage {
     await this.helper.showToast('Carregando...');
 
     //alert
-    await this.helper.showAlert('Login/Senha Incorreto !!', 'OK');
+    await this.helper.showAlert('Login/Senha Incorreto !!', [
+      {
+        text: 'Esqueci minha senha',
+        handler: () => console.log('Ok'),
+      },
+      {
+        text: 'Tentar novamente',
+        handler: () => console.log('Ok'),
+      }
+    ]);
 
     console.log(this.loginPayload);
   }
