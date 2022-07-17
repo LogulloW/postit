@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController,AlertController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payload/login.payload';
 
 @Component({
@@ -8,7 +9,10 @@ import { LoginPayload } from 'src/app/models/payload/login.payload';
 })
 export class LoginPage {
 
-  constructor() { }
+  constructor(
+    private readonly toastController: ToastController,
+    private readonly alertController: AlertController,
+  ) {}
 
   public loginPayload: LoginPayload = {
     email: '',
@@ -17,8 +21,29 @@ export class LoginPage {
 
   public isLoading: boolean = false ;
 
-  public login(): void{
+  public async login(): Promise<void> {
     this.isLoading = true;
+
+    //toast
+    const toast = await this.toastController.create({
+      message: 'Logando...',
+      duration: 5000
+  });
+
+    toast.present();
+
+    //alert
+    const alert = await this.alertController.create({
+      header: 'Login/Senha incorreto !',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => { console.log('Login/Senha incorreto')}
+        }
+      ]
+    });
+    alert.present();
+
     console.log(this.loginPayload);
   }
   public canLogin(): boolean{
