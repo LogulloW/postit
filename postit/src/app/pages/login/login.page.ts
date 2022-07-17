@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController,AlertController } from '@ionic/angular';
 import { LoginPayload } from 'src/app/models/payload/login.payload';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,7 @@ import { LoginPayload } from 'src/app/models/payload/login.payload';
 export class LoginPage {
 
   constructor(
-    private readonly toastController: ToastController,
-    private readonly alertController: AlertController,
+    private readonly helper: HelperService,
   ) {}
 
   public loginPayload: LoginPayload = {
@@ -25,24 +25,10 @@ export class LoginPage {
     this.isLoading = true;
 
     //toast
-    const toast = await this.toastController.create({
-      message: 'Logando...',
-      duration: 5000
-  });
-
-    toast.present();
+    await this.helper.showToast('Carregando...');
 
     //alert
-    const alert = await this.alertController.create({
-      header: 'Login/Senha incorreto !',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => { console.log('Login/Senha incorreto')}
-        }
-      ]
-    });
-    alert.present();
+    await this.helper.showAlert('Login/Senha Incorreto !!', 'OK');
 
     console.log(this.loginPayload);
   }
