@@ -44,6 +44,8 @@ export class LoginPage {
 
     console.log(this.loginPayload);
   }
+
+  //regex email
   public canLogin(): boolean{
     const regex = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
     );
@@ -55,7 +57,8 @@ export class LoginPage {
 
     return false;
   }
-
+  
+  // logo click
   public logoClick($event: boolean): void {
     console.log($event);
     //console.log('Você clicou no logo');
