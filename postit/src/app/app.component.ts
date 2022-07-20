@@ -17,7 +17,7 @@ export class AppComponent implements OnDestroy {
     .subscribe((route: NavigationEnd) => {
       console.log(route.url);
     
-      if(!this.routesWithoutNavbar.includes(route.url)) {
+      if(!this.routesWithoutNavbar.includes(route.urlAfterRedirects)) {
         this.canShowNavbar = true;
       }
       else {
