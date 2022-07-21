@@ -9,21 +9,19 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  constructor(
-    private readonly  router: Router,
-  ) {
+  constructor(private readonly router: Router) {
     this.routeSubscription = router.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe((route: NavigationEnd) => {
-      console.log(route.url);
-    
-      if(!this.routesWithoutNavbar.includes(route.urlAfterRedirects)) {
-        this.canShowNavbar = true;
-      }
-      else {
-        this.canShowNavbar = false;
-      }
-    });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((route: NavigationEnd) => {
+        console.log(route.url);
+
+        if (!this.routesWithoutNavbar.includes(route.url))
+          if (!this.routesWithoutNavbar.includes(route.urlAfterRedirects)) {
+            this.canShowNavbar = true;
+          } else {
+            this.canShowNavbar = false;
+          }
+      });
   }
 
   public canShowNavbar: boolean = false;
