@@ -13,16 +13,16 @@ export class NavbarComponent {
 
   constructor(
     private readonly router: Router,
-  ) { 
+  ) {
     router.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe((route: NavigationEnd) => {
-    if (this.router.url.includes('/feed'))
-      this.currentNavbar = NavbarEnum.FEED;
-    if (this.router.url.includes('/home'))
-      this.currentNavbar = NavbarEnum.HOME;
-    if (this.router.url.includes('/profile'))
-      this.currentNavbar = NavbarEnum.PROFILE;
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((route: NavigationEnd) => {
+        if (this.router.url.includes('/feed'))
+          this.currentNavbar = NavbarEnum.FEED;
+        if (this.router.url.includes('/home'))
+          this.currentNavbar = NavbarEnum.HOME;
+        if (this.router.url.includes('/profile'))
+          this.currentNavbar = NavbarEnum.PROFILE;
       });
   }
 

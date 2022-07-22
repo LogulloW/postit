@@ -1,4 +1,4 @@
-.input {
+.input-login {
   border: 1px solid #DBDBDB;
   background-color: transparent;
   margin-bottom: 1rem;
@@ -6,4 +6,15 @@
   outline: 0;
   padding: 1.3rem;
   color: black;
+}
+
+.input-register {
+  border: 1px solid #DBDBDB;
+  background-color: transparent;
+  margin-bottom: 1.5rem;
+  border-radius: 20px;
+  outline: 0;
+  padding: 1.3rem;
+  color: black;
+  height: 2.5rem;
 }

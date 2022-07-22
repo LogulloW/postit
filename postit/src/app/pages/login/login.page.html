@@ -3,40 +3,135 @@
   <img class="detail" src="assets/imgs/Grupo 19.svg" />
 
   <div class="container">
-    <app-logo
-      [src]="'assets/imgs/LOGO.svg'"
-      [full]="false"
-      (onClick)="logoClick($event)"
-    ></app-logo>
+    <!-- Login -->
+    <ng-container *ngIf="!clickRegister">
+      <div class="container--whitebar-login">
+        <app-logo
+          [src]="'assets/imgs/LOGO.svg'"
+          [full]="false"
+          (onClick)="logoClick($event)"
+        ></app-logo>
 
-    <div class="container--input">
-      <span>E-mail</span>
-      <input
-        (keydown.enter)="password.focus()"
-        class="input"
-        type="text"
-        [(ngModel)]="loginPayload.email"
-      />
-      <span>Senha</span>
-      <input
-        #password
-        (keydown.enter)="login()"
-        class="input"
-        type="password"
-        [(ngModel)]="loginPayload.password"
-      />
-    </div>
+        <div class="container--whitebar-login--input">
+          <span>E-mail</span>
+          <input
+            (keydown.enter)="password.focus()"
+            class="input-login"
+            type="text"
+            [(ngModel)]="loginPayload.email"
+          />
+          <span>Senha</span>
+          <input
+            #password
+            (keydown.enter)="login()"
+            class="input-login"
+            type="password"
+            [(ngModel)]="loginPayload.password"
+          />
+        </div>
 
-    <ion-button class="button" [class.disabled]="!canLogin()" (click)="login()">
-      {{ isLoading ? 'Carregando...' : 'Confirmar' }}
-      <app-half-circle-spinner
-        *ngIf="isLoading"
-        [animationDuration]="1000"
-        [size]="30"
-        [color]="'white'"
+        <ion-button
+          class="button"
+          [class.disabled]="!canLogin()"
+          (click)="login()"
+        >
+          {{ isLoading ? 'Carregando...' : 'Confirmar' }}
+          <app-half-circle-spinner
+            *ngIf="isLoading"
+            [animationDuration]="1000"
+            [size]="30"
+            [color]="'white'"
+          >
+          </app-half-circle-spinner>
+        </ion-button>
+        <p>
+          Não possui conta?
+          <a (click)="clickRegister = !clickRegister"> Cadastre-se!</a>
+        </p>
+      </div>
+    </ng-container>
+
+    <!-- Register -->
+    <ng-container *ngIf="clickRegister">
+      <div  class="container--whitebar-register">
+        <div class="container--whitebar-register--logobuttom">
+          <img
+            src="assets/imgs/seta_register.svg"
+            (click)="clickRegister = !clickRegister"
+          />
+          <app-logo
+          [src]="'assets/imgs/LOGO.svg'"
+          [full]="false"
+          (onClick)="logoClick($event)"
+        ></app-logo>
+        </div>
+        <div class="container--whitebar-register--input">
+          <!-- Nome -->
+          <span>Nome Completo*</span>
+          <input
+            (keydown.enter)="email.focus()"
+            class="input-register"
+            type="text"
+            [(ngModel)]="registerPayload.nome"
+          />
+          <!-- E-mail -->
+          <span>E-mail*</span>
+          <input
+            #email
+            (keydown.enter)="confirmEmail.focus()"
+            class="input-register"
+            type="text"
+            [(ngModel)]="registerPayload.email"
+          />
+          <!-- Confirme o E-mail -->
+          <span>Confirme o E-mail*</span>
+          <input
+            #confirmEmail
+            (keydown.enter)="passwordRegister.focus()"
+            class="input-register"
+            type="text"
+            [(ngModel)]="registerPayload.confirmEmail"
+          />
+          <!-- Senha -->
+          <span>Senha</span>
+          <input
+            #passwordRegister
+            (keydown.enter)="confirmPassword.focus()"
+            class="input-register"
+            type="password"
+            [(ngModel)]="registerPayload.password"
+          />
+          <!-- Confirme a Senha -->
+          <span>Confirme a Senha*</span>
+          <input
+            #confirmPassword
+            (keydown.enter)="login()"
+            class="input-register"
+            type="password"
+            [(ngModel)]="registerPayload.confirmPassword"
+          />
+          <p>
+            *Campos obrigatórios
+          </p>
+          <p>
+            Ao registrar-me, concordo com os termos de uso a Política de Privacidade do aplicativo.
+          </p>
+        </div>
+        <ion-button
+        class="button"
+        [class.disabled]="!canRegister()"
+        (click)="register()"
       >
-      </app-half-circle-spinner>
-    </ion-button>
-    <p>Não possui conta? <a href="#"> Cadastre-se!</a></p>
+        {{ isLoading ? 'Carregando...' : 'Criar Conta' }}
+        <app-half-circle-spinner
+          *ngIf="isLoading"
+          [animationDuration]="1000"
+          [size]="30"
+          [color]="'white'"
+        >
+        </app-half-circle-spinner>
+      </ion-button>
+      </div>
+    </ng-container>
   </div>
 </div>
